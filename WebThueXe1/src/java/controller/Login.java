@@ -39,9 +39,7 @@ public class Login extends HttpServlet {
             if (user.equals(u) && pass.equals(p)) {
                 response.sendRedirect("WelcomeServlet");
             } else {
-                out.write("login fail");
-                out.write("user: abc    pass: 123");
-                response.sendRedirect("login.html");
+                response.sendRedirect("fail.html");
                 //request.getRequestDispatcher("login.html").include(request, response);
             }
         }

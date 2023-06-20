@@ -37,7 +37,7 @@ public class WelcomeServlet extends HttpServlet {
             out.println("<title>Servlet WelcomeServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Login Successful!</h1>");
+            out.println("<h1>thang nao doc lam cho</h1>");
             out.println("</body>");
             out.println("</html>");
         }
