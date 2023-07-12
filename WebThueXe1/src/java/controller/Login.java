@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
             String user = getInitParameter("username");
             String pass = getInitParameter("password");
             if (user.equals(u) && pass.equals(p)) {
-                response.sendRedirect("web1.html");
+                response.sendRedirect("test1.html");
             } else {
                 response.sendRedirect("fail.html");
                 //request.getRequestDispatcher("login.html").include(request, response);

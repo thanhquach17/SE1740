@@ -40,6 +40,11 @@ nav a:hover {
     color: black;
 }
 
+section {
+    display: flex;
+    flex-wrap: wrap; 
+    margin: 20px;
+}
 
 article {
     background-color: white;
@@ -90,3 +95,6 @@ footer {
     padding: 20px;
     text-align: center;
 }
+.wrapper {
+    padding-bottom: 100px; 
+  }
