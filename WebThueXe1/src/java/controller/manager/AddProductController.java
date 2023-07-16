@@ -2,18 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.manager;
 
-import jakarta.servlet.ServletContext;
+import dao.ProductDAO;
+import entites.Account;
+import entites.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-
-public class Login extends HttpServlet {
+/**
+ *
+ * @author ADMIN
+ */
+@WebServlet(name = "AddProductController", urlPatterns = {"/add-product"})
+public class AddProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,20 +36,6 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //Get data from HTML form  
-            String u = request.getParameter("user");
-            String p = request.getParameter("pass");
-            //Get data from XML
-            //ServletContext sc=getServletContext();
-            String user = getInitParameter("username");
-            String pass = getInitParameter("password");
-            if (user.equals(u) && pass.equals(p)) {
-                response.sendRedirect("test1.html");
-            } else {
-                response.sendRedirect("fail.html");
-                //request.getRequestDispatcher("login.html").include(request, response);
-            }
         }
     }
 
@@ -71,7 +65,26 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account != null && account.getRole()== 1) {
+            String mess;
+            ProductDAO pDao = new ProductDAO();
+            String name = request.getParameter("name");
+            double price = Double.parseDouble(request.getParameter("price"));
+//            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            String image = request.getParameter("image");
+            int category = Integer.parseInt(request.getParameter("category"));
+            String description = request.getParameter("description");
+            Product product = new Product(name, price, image, category, description);
+
+            boolean isAdded = pDao.addProduct(product);
+            if (isAdded) {
+                response.sendRedirect("product-management");
+            }
+        }else{
+            response.sendRedirect("home");
+        }
     }
 
     /**

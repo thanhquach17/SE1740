@@ -72,11 +72,11 @@
                         <div class="card">
 
                             <a href="product-details?productId=${product.id}">
-                                <img src="${product.image}" class="card-img-top" alt="Product Image">
+                                <img src="${product.image}" class="card-img-top" alt="Product Image"height="300" >
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
-                                <p class="card-text">Price: $${product.price}</p>
+                                <p class="card-text">Price/day: $${product.price}</p>
                             </div>
                         </div>
                     </div>
