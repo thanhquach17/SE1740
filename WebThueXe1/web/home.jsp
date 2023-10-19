@@ -81,6 +81,8 @@
                         </div>
                     </div>
                 </c:forEach>
+
+                
             </div>
 
             <nav class="mt-3" aria-label="Page navigation example">
